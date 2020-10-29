@@ -1,6 +1,6 @@
 ﻿
 
-namespace board
+namespace chess_board
 {
     class Position
     {
