@@ -8,8 +8,8 @@ namespace Chess_console_mode
         static void Main(string[] args)
         {
             Board board = new Board(8, 8);
-           
-
+            
+            screen.printingChessBoard(board);
             Console.ReadKey();
 
         }
