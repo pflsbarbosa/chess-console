@@ -8,14 +8,22 @@ namespace Chess_console_mode
     {
         static void Main(string[] args)
         {
-            Board board = new Board(8, 8);
-            
-            board.PuttingPieces(new Tower(board, Color.Black), new Position(0, 0));
-            board.PuttingPieces(new Tower(board, Color.Black), new Position(1, 3));
-            board.PuttingPieces(new King(board, Color.Black), new Position(2, 4));
-            
+            try
+            {
+                Board board = new Board(8, 8);
 
-            screen.printingChessBoard(board);
+                board.PuttingPieces(new Tower(board, Color.Black), new Position(0, 0));
+                board.PuttingPieces(new Tower(board, Color.Black), new Position(1, 3));
+                board.PuttingPieces(new King(board, Color.Black), new Position(0, 2));
+
+
+                screen.printingChessBoard(board);
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
             Console.ReadKey();
 
         }
