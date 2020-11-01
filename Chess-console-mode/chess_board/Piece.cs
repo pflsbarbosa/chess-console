@@ -15,9 +15,9 @@ namespace chess_board
 
         public Piece() { }
 
-        public Piece(Position position, Color color, int movmentsQuantity, Board board)
+        public Piece(Color color, Board board)
         {
-            Position = position ?? throw new ArgumentNullException(nameof(position));
+            Position = null;
             Board = board ?? throw new ArgumentNullException(nameof(board));
             Color = color;
             MovmentsQuantity = 0;
