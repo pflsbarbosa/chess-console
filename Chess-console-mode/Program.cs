@@ -10,19 +10,20 @@ namespace Chess_console_mode
         {
             try
             {
-                ChessPosition chessPosition = new ChessPosition('c', 7);
-                Console.WriteLine(chessPosition);
-                Console.WriteLine(chessPosition.ChessPositionConversion());
                 /*
+                ChessPosition chessPosition = new ChessPosition('f', 7);
+                Console.Write(chessPosition);
+                Console.WriteLine(" -> "+chessPosition.ChessPositionConversion());
+                */
                 Board board = new Board(8, 8);
 
                 board.PuttingPieces(new Tower(board, Color.Black), new Position(0, 0));
                 board.PuttingPieces(new Tower(board, Color.Black), new Position(1, 3));
-                board.PuttingPieces(new King(board, Color.Black), new Position(0, 2));
+                board.PuttingPieces(new King(board, Color.White), new Position(0, 2));
                 
 
                 screen.printingChessBoard(board);
-                */
+                
             }
             catch (Exception e)
             {

@@ -15,8 +15,10 @@ namespace chess_game
 
         public Position ChessPositionConversion()
         {
-            return new Position(8 - Line, Column - 'a');
-           
+            return new Position(8 - Line, Column - 'a' );
+            //'a' = 97 (ASCII decimal value) 
+            //Column = 100
+
         }
 
         public override string ToString()
