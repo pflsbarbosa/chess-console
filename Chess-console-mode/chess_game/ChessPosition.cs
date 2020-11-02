@@ -13,7 +13,7 @@ namespace chess_game
             Line = line;
         }
 
-        public Position ChessPositionConversion()
+        public Position ToPositionMatrix()
         {
             return new Position(8 - Line, Column - 'a' );
             //'a' = 97 (ASCII decimal value) 

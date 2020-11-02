@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using chess_board;
+using chess_game;
 
 namespace Chess_console_mode
 {
-    class screen
+    class Screen
     {
         public static void printingChessBoard(Board board)
         {
@@ -32,8 +33,17 @@ namespace Chess_console_mode
 
             Console.Write("  a b c d e f g h");
         }
+        public static ChessPosition ReadingChessPosition()
+        {
+            string s = Console.ReadLine();
+            char column =char.Parse(s.Substring(0, 1));
+            int line = int.Parse(s[1] + "");
+            return new ChessPosition(column, line);
+        }
+
         public static void PrintingPiece(Piece piece) 
         {
+
             if (piece.Color == Color.White)
             {
                 Console.Write(piece);

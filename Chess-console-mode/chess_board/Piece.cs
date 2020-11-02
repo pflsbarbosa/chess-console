@@ -10,7 +10,7 @@ namespace chess_board
     {
         public Position Position { get; set; }        
         public Color Color { get; protected set; }
-        public int MovmentsQuantity { get; protected set; }
+        public int MovementsQuantity { get; protected set; }
         public Board Board { get; set; }
 
         public Piece() { }
@@ -20,7 +20,11 @@ namespace chess_board
             Position = null;
             Board = board ?? throw new ArgumentNullException(nameof(board));
             Color = color;
-            MovmentsQuantity = 0;
+            MovementsQuantity = 0;
+        }
+        public void incrementingQtyMovements()
+        {
+            MovementsQuantity++;
         }
     }
 }

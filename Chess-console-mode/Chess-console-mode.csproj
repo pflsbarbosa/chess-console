@@ -49,6 +49,7 @@
     <Compile Include="chess_board\Piece.cs" />
     <Compile Include="chess_board\Position.cs" />
     <Compile Include="chess_game\Bishop.cs" />
+    <Compile Include="chess_game\ChessMatch.cs" />
     <Compile Include="chess_game\ChessPosition.cs" />
     <Compile Include="chess_game\Horse.cs" />
     <Compile Include="chess_game\King.cs" />
@@ -57,7 +58,7 @@
     <Compile Include="chess_game\Tower.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="screen.cs" />
+    <Compile Include="Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -36,7 +36,7 @@ namespace chess_board
             return Piece(position) != null;
         }
 
-        public void PuttingPieces(Piece piece, Position position)
+        public void PuttingPiece(Piece piece, Position position)
         {
             if (PieceExists(position))
             {
@@ -45,6 +45,22 @@ namespace chess_board
             Pieces[position.Line, position.Column] = piece;
             piece.Position = position;
         }
+        
+        public  Piece RemovingPieces(Position position)
+        {
+            
+            if (Piece(position) == null)
+            {
+                return null;
+            }
+
+            Piece aux = Piece(position);
+            
+            //removing the piece from board
+            aux.Position = null; 
+            Pieces[position.Line, position.Column] = null;
+            return aux;
+        } 
 
         public bool validPosition(Position position)
         {

@@ -15,14 +15,21 @@ namespace Chess_console_mode
                 Console.Write(chessPosition);
                 Console.WriteLine(" -> "+chessPosition.ChessPositionConversion());
                 */
-                Board board = new Board(8, 8);
+                ChessMatch chessMatch = new ChessMatch();
 
-                board.PuttingPieces(new Tower(board, Color.Black), new Position(0, 0));
-                board.PuttingPieces(new Tower(board, Color.Black), new Position(1, 3));
-                board.PuttingPieces(new King(board, Color.White), new Position(0, 2));
-                
+                while (!chessMatch.Finished)
+                {
+                    Console.Clear();
+                    Screen.printingChessBoard(chessMatch.Board);
 
-                screen.printingChessBoard(board);
+                    Console.WriteLine();
+                    Console.Write("Source: " );
+                    Position source = Screen.ReadingChessPosition().ToPositionMatrix();
+                    Console.Write("Destiny: ");
+                    Position destiny = Screen.ReadingChessPosition().ToPositionMatrix();
+
+                    chessMatch.ExecutingMovement(source, destiny);
+                }
                 
             }
             catch (Exception e)
