@@ -25,6 +25,13 @@ namespace Chess_console_mode
                     Console.WriteLine();
                     Console.Write("Source: " );
                     Position source = Screen.ReadingChessPosition().ToPositionMatrix();
+
+                    bool[,] possiblePositions = chessMatch.Board.Piece(source).PossibleMovements();
+
+                    Console.Clear();
+                    Screen.printingChessBoard(chessMatch.Board, possiblePositions);
+
+                    Console.WriteLine();
                     Console.Write("Destiny: ");
                     Position destiny = Screen.ReadingChessPosition().ToPositionMatrix();
 

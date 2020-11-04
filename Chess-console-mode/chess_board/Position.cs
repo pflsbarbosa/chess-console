@@ -14,7 +14,11 @@ namespace chess_board
             Line = line;
             Column = column;
         }
-
+        public void  DefiningValues(int line, int column)
+        {
+            Line = line;
+            Column = column;
+        }
         public override string ToString()
         {
             return Line
