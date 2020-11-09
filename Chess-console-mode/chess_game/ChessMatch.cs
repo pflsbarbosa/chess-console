@@ -6,8 +6,8 @@ namespace chess_game
     class ChessMatch
     {
         public Board Board { get; private set; }
-        private int Shift;
-        private Color CurrentPlayer;
+        public int Shift { get; private set; }
+        public Color CurrentPlayer { get; private set; }
         public bool Finished { get; private set; }
 
         public ChessMatch()
@@ -24,6 +24,47 @@ namespace chess_game
             piece.incrementingQtyMovements();
             Piece capturedPiece = Board.RemovingPieces(destiny);
             Board.PuttingPiece(piece, destiny);
+        }
+        public void PerformMove(Position source, Position destiny)
+        {
+            ExecutingMovement(source, destiny);
+            Shift++;
+            ChangePlayer();
+        }
+
+        public void ValidateTheOriginPosition(Position position)
+        {
+            if (Board.Piece(position) == null)
+            {
+                throw new BoardException("Don´t exist any piece in that position");
+            }
+            if (CurrentPlayer != Board.Piece(position).Color)
+            {
+                throw new BoardException("The selected original piece it is not yours!");
+            }
+            if (!Board.Piece(position).ThereArePossibleMovements())
+            {
+                throw new BoardException("There isn't any possible movements for this piece!");
+            }
+        }
+        public void ValidateTheDestinyPosition(Position original, Position destiny)
+        {
+            if (!Board.Piece(original).CanMooveTo(destiny))
+            {
+                throw new BoardException("Invalid destiny position!");
+            }
+        }
+
+        public void ChangePlayer()
+        {
+            if (CurrentPlayer == Color.White)
+            {
+                CurrentPlayer = Color.Black;
+            }
+            else
+            {
+                CurrentPlayer = Color.White;
+            }
         }
         private void PuttingPieces()
         {

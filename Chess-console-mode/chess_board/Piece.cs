@@ -22,6 +22,27 @@ namespace chess_board
         {
             MovementsQuantity++;
         }
+        public bool ThereArePossibleMovements()
+        {
+            bool[,] logicMatrix = PossibleMovements();
+            for (int i = 0; i < Board.Lines; i++)
+            {
+                for (int j = 0; j < Board.Columns; j++)
+                {
+                    if (logicMatrix[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            //if there isn't any possible movements return false
+            return false;
+        }
+
+        public bool CanMooveTo(Position position)//to read better
+        {
+            return PossibleMovements()[position.Line, position.Column];
+        }
 
         public abstract bool[,] PossibleMovements();
     }
