@@ -1,9 +1,7 @@
 ﻿using System;
 using chess_board;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace chess_board
 {

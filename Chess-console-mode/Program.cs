@@ -10,11 +10,7 @@ namespace Chess_console_mode
         {
             try
             {
-                /*
-                ChessPosition chessPosition = new ChessPosition('f', 7);
-                Console.Write(chessPosition);
-                Console.WriteLine(" -> "+chessPosition.ChessPositionConversion());
-                */
+               
                 ChessMatch chessMatch = new ChessMatch();
 
                 while (!chessMatch.Finished)
@@ -22,10 +18,8 @@ namespace Chess_console_mode
                     try
                     {
                         Console.Clear();
-                        Screen.printingChessBoard(chessMatch.Board);
-                        Console.WriteLine();
-                        Console.WriteLine("Shift: " + chessMatch.Shift);
-                        Console.WriteLine("Awaitting move: " + chessMatch.CurrentPlayer);
+                        Screen.PrintingChessMatch(chessMatch);
+                        
 
                         Console.Write("Source: ");
                         Position original = Screen.ReadingChessPosition().ToPositionMatrix();

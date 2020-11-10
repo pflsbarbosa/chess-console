@@ -7,6 +7,40 @@ namespace Chess_console_mode
 {
     class Screen
     {
+        public static void PrintingChessMatch(ChessMatch chessMatch)
+        {
+            Screen.printingChessBoard(chessMatch.Board);
+            Console.WriteLine();
+            PrintingCapturedPieces(chessMatch);         
+            Console.WriteLine();
+            Console.WriteLine("Shift: " + chessMatch.Shift);
+            Console.WriteLine("Awaitting move: " + chessMatch.CurrentPlayer);
+            Console.WriteLine();
+        }
+        public  static void PrintingCapturedPieces(ChessMatch chessMatch)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Captured pieces: ");
+            Console.Write("Whites:");
+            PrintingSet(chessMatch.CapturedPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Blacks:");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            PrintingSet(chessMatch.CapturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+        public static void PrintingSet(HashSet<Piece> set)
+        {
+            Console.Write("[");
+            foreach (Piece x in set)
+            {
+                Console.Write(x + " ");
+            }
+
+            Console.Write("]");
+        }
         public static void printingChessBoard(Board board)
         {
             for (int i = 0; i < board.Lines; i++)
