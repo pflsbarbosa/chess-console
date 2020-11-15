@@ -18,9 +18,13 @@ namespace chess_board
             MovementsQuantity = 0;
         }
                 
-        public void incrementingQtyMovements()
+        public void IncrementingQtyMovements()
         {
             MovementsQuantity++;
+        }
+        public void DecrementingQtyMovements()
+        {
+            MovementsQuantity--;
         }
         public bool ThereArePossibleMovements()
         {

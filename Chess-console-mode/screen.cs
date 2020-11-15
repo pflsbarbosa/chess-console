@@ -15,6 +15,10 @@ namespace Chess_console_mode
             Console.WriteLine();
             Console.WriteLine("Shift: " + chessMatch.Shift);
             Console.WriteLine("Awaitting move: " + chessMatch.CurrentPlayer);
+            if (chessMatch.CheckMate)
+            {
+                Console.WriteLine("YOU ARE IN CHECK MATE!");
+            }
             Console.WriteLine();
         }
         public  static void PrintingCapturedPieces(ChessMatch chessMatch)

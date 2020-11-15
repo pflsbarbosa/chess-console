@@ -11,6 +11,7 @@ namespace chess_game
         public bool Finished { get; private set; }
         private HashSet<Piece> Pieces;
         private HashSet<Piece> Captureds;
+        public bool  CheckMate { get; private set; }
 
         public ChessMatch()
         {
@@ -18,27 +19,53 @@ namespace chess_game
             Shift = 1;
             CurrentPlayer = Color.White;//Initating with white Pieces (chess rule)
             Finished = false;
+            CheckMate = false;
             Pieces = new HashSet<Piece>();
             Captureds = new HashSet<Piece>();
             PuttingPieces();
         }
 
-        public void ExecutingMovement(Position source, Position destiny)
+        public Piece ExecutingMovement(Position origin, Position destiny)
         {
-            Piece piece = Board.RemovingPieces(source);//removing the source position
-            piece.incrementingQtyMovements();
+            Piece piece = Board.RemovingPieces(origin);//removing the source position
+            piece.IncrementingQtyMovements();
             Piece capturedPiece = Board.RemovingPieces(destiny);
             Board.PuttingPiece(piece, destiny);
             if (capturedPiece != null)
             {
                 Captureds.Add(capturedPiece);
             }
+            return capturedPiece;
         }
 
-
-        public void PerformMove(Position source, Position destiny)
+        public void UndoTheMovement(Position origin, Position destiny, Piece capturedPiece)
         {
-            ExecutingMovement(source, destiny);
+            Piece p = Board.RemovingPieces(destiny);
+            p.DecrementingQtyMovements();
+            if (capturedPiece != null)
+            {
+                Board.PuttingPiece(p, destiny);
+                Captureds.Remove(capturedPiece);
+            }
+            Board.PuttingPiece(p, origin);
+        }
+        public void PerformMove(Position origin, Position destiny)
+        {
+            Piece capturedPiece = ExecutingMovement(origin, destiny);
+            if (IsInCheckMate(CurrentPlayer))
+            {
+                UndoTheMovement(origin, destiny, capturedPiece);
+                throw new BoardException("You can not put yourself in check-mate!");
+            }
+            if (IsInCheckMate(Opponent(CurrentPlayer)))
+            {
+                CheckMate = true;
+            }
+            else
+            {
+                CheckMate = false;
+            }
+
             Shift++;
             ChangePlayer();
         }
@@ -89,10 +116,10 @@ namespace chess_game
             }
             return aux;
         }
-        public  HashSet<Piece> PiecesInMatch(Color color)
+        public HashSet<Piece> PiecesInMatch(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
-            foreach (Piece x in Captureds)
+            foreach (Piece x in Pieces)
             {
                 if (x.Color == color)
                 {
@@ -104,9 +131,54 @@ namespace chess_game
             return aux;
         }
 
-        public  void PuttingNewPiece(char column, int line, Piece piece)
+        private Color Opponent(Color color)
+        {
+            if (color == Color.White)//if color give it is equal to white
+            {
+                return Color.Black; //the opponent color will be the black
+            }
+            else
+            {
+                return Color.White;
+            }
+        }
+        private Piece King(Color color)
+        {
+            foreach (Piece x in PiecesInMatch(color))
+            {
+                //who is the king of one given color
+                if (x is King)//if this piece it is an instance of class king
+                {
+                    return x;//return this piece(King)
+                }
+            }
+            return null;
+        }
+
+        public bool IsInCheckMate(Color color)
+        {
+            //it is the king of a certain color in checkmate?
+            //first check if that king it is  on the board
+            Piece K = King(color);
+            if (K == null)
+            {
+                throw new BoardException("There isn't the king of color " + color + " in the board!");
+            }
+            foreach (Piece x in PiecesInMatch(Opponent(color)))
+            {
+                bool[,] logicMatrix = x.PossibleMovements();//if oppnonent piece x
+                if (logicMatrix[K.Position.Line, K.Position.Column])//in position where is the king it's true
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+        public void PuttingNewPiece(char column, int line, Piece piece)
         {
             Board.PuttingPiece(piece, new ChessPosition(column, line).ToPositionMatrix());
+            Pieces.Add(piece);
         }
         private void PuttingPieces()
         {
