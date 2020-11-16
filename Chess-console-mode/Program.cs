@@ -19,8 +19,8 @@ namespace Chess_console_mode
                     {
                         Console.Clear();
                         Screen.PrintingChessMatch(chessMatch);
-                        
 
+                        Console.WriteLine();
                         Console.Write("Source: ");
                         Position original = Screen.ReadingChessPosition().ToPositionMatrix();
                         chessMatch.ValidateTheOriginPosition(original);
@@ -45,7 +45,8 @@ namespace Chess_console_mode
                         Console.ReadLine();
                     }
                 }
-                
+                Console.Clear();
+                Screen.PrintingChessMatch(chessMatch);
             }
             catch (Exception e)
             {

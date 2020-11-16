@@ -11,7 +11,7 @@ namespace chess_game
         public bool Finished { get; private set; }
         private HashSet<Piece> Pieces;
         private HashSet<Piece> Captureds;
-        public bool  CheckMate { get; private set; }
+        public bool CheckMate { get; private set; }
 
         public ChessMatch()
         {
@@ -44,7 +44,7 @@ namespace chess_game
             p.DecrementingQtyMovements();
             if (capturedPiece != null)
             {
-                Board.PuttingPiece(p, destiny);
+                Board.PuttingPiece(capturedPiece, destiny);
                 Captureds.Remove(capturedPiece);
             }
             Board.PuttingPiece(p, origin);
@@ -52,11 +52,13 @@ namespace chess_game
         public void PerformMove(Position origin, Position destiny)
         {
             Piece capturedPiece = ExecutingMovement(origin, destiny);
+
             if (IsInCheckMate(CurrentPlayer))
             {
                 UndoTheMovement(origin, destiny, capturedPiece);
                 throw new BoardException("You can not put yourself in check-mate!");
             }
+
             if (IsInCheckMate(Opponent(CurrentPlayer)))
             {
                 CheckMate = true;
@@ -66,8 +68,16 @@ namespace chess_game
                 CheckMate = false;
             }
 
-            Shift++;
-            ChangePlayer();
+            if (TestingCheckMate(Opponent(CurrentPlayer)))
+            {
+                Finished = true;
+            }
+            else
+            {
+                Shift++;
+                ChangePlayer();
+            }
+
         }
 
         public void ValidateTheOriginPosition(Position position)
@@ -173,15 +183,50 @@ namespace chess_game
                 }
             }
             return false;
-
         }
+
+        public bool TestingCheckMate(Color color)
+        {
+            if (!IsInCheckMate(color))
+            {
+                return false;
+            }
+            foreach (Piece x in PiecesInMatch(color))
+            {
+                bool[,] logicMatrix = x.PossibleMovements();
+                for (int i = 0; i < Board.Lines; i++)
+                {
+                    for (int j = 0; j < Board.Columns; j++)
+                    {
+                        if (logicMatrix[i, j])//if the matrix in j position it is true it is a possible position for that piece
+                        {
+                            Position origin = x.Position;
+                            Position destiny = new Position(i, j);
+                            Piece capturedPiece = ExecutingMovement(origin, destiny);
+                            bool check_CheckMate = IsInCheckMate(color);
+                            UndoTheMovement(origin, destiny, capturedPiece);
+                            if (!check_CheckMate)//if king is not any more in check
+                            {
+                                return false;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+            return true;//lost the game
+        }
+
         public void PuttingNewPiece(char column, int line, Piece piece)
         {
             Board.PuttingPiece(piece, new ChessPosition(column, line).ToPositionMatrix());
             Pieces.Add(piece);
         }
+
         private void PuttingPieces()
         {
+            /*
             PuttingNewPiece('c', 1, new Tower(Board, Color.White));
             PuttingNewPiece('c', 2, new Tower(Board, Color.White));
             PuttingNewPiece('d', 2, new Tower(Board, Color.White));
@@ -196,8 +241,14 @@ namespace chess_game
             PuttingNewPiece('d', 7, new Tower(Board, Color.Black));
             PuttingNewPiece('e', 8, new Tower(Board, Color.Black));
             PuttingNewPiece('e', 7, new Tower(Board, Color.Black));
+            */
 
+            PuttingNewPiece('c', 1, new Tower(Board, Color.White));
+            PuttingNewPiece('d', 1, new King(Board, Color.White));
+            PuttingNewPiece('h', 7, new Tower(Board, Color.White));
 
+            PuttingNewPiece('a', 8, new King(Board, Color.Black));
+            PuttingNewPiece('b', 8, new Tower(Board, Color.Black));
 
         }
     }

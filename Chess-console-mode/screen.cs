@@ -11,17 +11,25 @@ namespace Chess_console_mode
         {
             Screen.printingChessBoard(chessMatch.Board);
             Console.WriteLine();
-            PrintingCapturedPieces(chessMatch);         
+            PrintingCapturedPieces(chessMatch);
             Console.WriteLine();
             Console.WriteLine("Shift: " + chessMatch.Shift);
-            Console.WriteLine("Awaitting move: " + chessMatch.CurrentPlayer);
-            if (chessMatch.CheckMate)
+            if (!chessMatch.Finished)
             {
-                Console.WriteLine("YOU ARE IN CHECK MATE!");
+                Console.WriteLine("Awaitting move: " + chessMatch.CurrentPlayer);
+                if (chessMatch.CheckMate)
+                {
+                    Console.WriteLine("YOU ARE IN CHECK MATE!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("CHECKMATE!");
+                Console.WriteLine("WINNER: "+ chessMatch.CurrentPlayer);
             }
             Console.WriteLine();
         }
-        public  static void PrintingCapturedPieces(ChessMatch chessMatch)
+        public static void PrintingCapturedPieces(ChessMatch chessMatch)
         {
             Console.WriteLine();
             Console.WriteLine("Captured pieces: ");
@@ -53,7 +61,7 @@ namespace Chess_console_mode
 
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    PrintingPiece(board.Piece(i, j));                                      
+                    PrintingPiece(board.Piece(i, j));
                 }
                 Console.WriteLine();
             }
@@ -70,7 +78,7 @@ namespace Chess_console_mode
 
                 for (int j = 0; j < board.Columns; j++)
                 {
-                    if (possiblePositions[i,j] == true)
+                    if (possiblePositions[i, j] == true)
                     {
                         Console.BackgroundColor = bakgroundColorChanged;
                     }
