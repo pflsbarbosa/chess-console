@@ -43,7 +43,7 @@ namespace chess_board
             return false;
         }
 
-        public bool CanMooveTo(Position position)//to read better
+        public bool PossibleMovement(Position position)//to read better
         {
             return PossibleMovements()[position.Line, position.Column];
         }
