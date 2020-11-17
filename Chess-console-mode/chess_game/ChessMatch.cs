@@ -35,6 +35,28 @@ namespace chess_game
             {
                 Captureds.Add(capturedPiece);
             }
+
+            //#special Movement: Small Castling
+            if (piece is King && destiny.Column == origin.Column + 2 )
+            {
+                Position towerOrigin = new Position(origin.Line, origin.Column + 3);//king's Column +3
+                Position towerDestiny = new Position(origin.Line, origin.Column + 1);//king's Column +1
+                Piece tower = Board.RemovingPieces(towerOrigin);
+                tower.IncrementingQtyMovements();
+                Board.PuttingPiece(tower, towerDestiny);
+
+            }
+            //#special Movement: Great Castling
+            if (piece is King && destiny.Column == origin.Column - 2)
+            {
+                Position towerOrigin = new Position(origin.Line, origin.Column - 4);//king's Column +3
+                Position towerDestiny = new Position(origin.Line, origin.Column -1);//king's Column +1
+                Piece tower = Board.RemovingPieces(towerOrigin);
+                tower.IncrementingQtyMovements();
+                Board.PuttingPiece(tower, towerDestiny);
+
+            }
+
             return capturedPiece;
         }
 
@@ -48,6 +70,27 @@ namespace chess_game
                 Captureds.Remove(capturedPiece);
             }
             Board.PuttingPiece(p, origin);
+
+            //#special Movement: Small Castling
+            if (p is King && destiny.Column == origin.Column + 2)
+            {
+                Position towerOrigin = new Position(origin.Line, origin.Column + 3);//king's Column +3
+                Position towerDestiny = new Position(origin.Line, origin.Column + 1);//king's Column +1
+                Piece tower = Board.RemovingPieces(towerDestiny);
+                tower.DecrementingQtyMovements();
+                Board.PuttingPiece(tower, towerOrigin);
+
+            }
+            //#special Movement: Great Castling
+            if (p is King && destiny.Column == origin.Column - 2)
+            {
+                Position towerOrigin = new Position(origin.Line, origin.Column - 4);//king's Column +3
+                Position towerDestiny = new Position(origin.Line, origin.Column - 1);//king's Column +1
+                Piece tower = Board.RemovingPieces(towerDestiny);
+                tower.DecrementingQtyMovements();
+                Board.PuttingPiece(tower, towerOrigin);
+
+            }
         }
         public void PerformMove(Position origin, Position destiny)
         {
@@ -231,7 +274,7 @@ namespace chess_game
             PuttingNewPiece('b', 1, new Horse(Board, Color.White));
             PuttingNewPiece('c', 1, new Bishop(Board, Color.White));
             PuttingNewPiece('d', 1, new Queen(Board, Color.White));
-            PuttingNewPiece('e', 1, new King(Board, Color.White));
+            PuttingNewPiece('e', 1, new King(Board, Color.White, this));
             PuttingNewPiece('f', 1, new Bishop(Board, Color.White));
             PuttingNewPiece('g', 1, new Horse(Board, Color.White));
             PuttingNewPiece('h', 1, new Tower(Board, Color.White));
@@ -249,7 +292,7 @@ namespace chess_game
             PuttingNewPiece('b', 8, new Horse(Board, Color.Black));
             PuttingNewPiece('c', 8, new Bishop(Board, Color.Black));
             PuttingNewPiece('d', 8, new Queen(Board, Color.Black));
-            PuttingNewPiece('e', 8, new King(Board, Color.Black));
+            PuttingNewPiece('e', 8, new King(Board, Color.Black, this));
             PuttingNewPiece('f', 8, new Bishop(Board, Color.Black));
             PuttingNewPiece('g', 8, new Horse(Board, Color.Black));
             PuttingNewPiece('h', 8, new Tower(Board, Color.Black));
