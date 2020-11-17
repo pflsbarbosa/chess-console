@@ -29,95 +29,55 @@ namespace chess_game
         public override bool[,] PossibleMovements()
         {
             bool[,] logicMatrix = new bool[Board.Lines, Board.Columns];
-            Position position = new Position(0, 0);
+            Position pos = new Position(0, 0);
 
             //1 step North and 2 to East 
-            position.DefiningValues(Position.Line - 1, Position.Column + 2);
-            while (Board.validPosition(position) && CanMove(position))
+            pos.DefiningValues(Position.Line - 1, Position.Column + 2);
+            if (Board.validPosition(pos) && CanMove(pos))
             {
-                logicMatrix[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
-                {
-                    break;
-                }
-                position.Line = position.Line - 1;//Taking the opponente position 
+                logicMatrix[pos.Line, pos.Column] = true;                                
             }
             //2 step North and 1 to East 
-            position.DefiningValues(Position.Line - 2, Position.Column + 1);
-            while (Board.validPosition(position) && CanMove(position))
+            pos.DefiningValues(Position.Line - 2, Position.Column + 1);
+            if (Board.validPosition(pos) && CanMove(pos))
             {
-                logicMatrix[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
-                {
-                    break;
-                }
-                position.Line = position.Line - 1;//Taking the opponente position 
+                logicMatrix[pos.Line, pos.Column] = true;                                
             }
             //1 step North and 2 to West 
-            position.DefiningValues(Position.Line - 1, Position.Column - 2);
-            while (Board.validPosition(position) && CanMove(position))
+            pos.DefiningValues(Position.Line - 1, Position.Column - 2);
+            if (Board.validPosition(pos) && CanMove(pos))
             {
-                logicMatrix[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
-                {
-                    break;
-                }
-                position.Line = position.Line - 1;//Taking the opponente position 
+                logicMatrix[pos.Line, pos.Column] = true;                
             }
             //2 step North and 1 to West 
-            position.DefiningValues(Position.Line - 2, Position.Column - 1);
-            while (Board.validPosition(position) && CanMove(position))
+            pos.DefiningValues(Position.Line - 2, Position.Column - 1);
+            if (Board.validPosition(pos) && CanMove(pos))
             {
-                logicMatrix[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
-                {
-                    break;
-                }
-                position.Line = position.Line - 1;//Taking the opponente position 
+                logicMatrix[pos.Line, pos.Column] = true;               
             }
             //1 Step South and 2 to East
-            position.DefiningValues(Position.Line + 1, Position.Column + 2);
-            while (Board.validPosition(position) && CanMove(position))
+            pos.DefiningValues(Position.Line + 1, Position.Column + 2);
+            if (Board.validPosition(pos) && CanMove(pos))
             {
-                logicMatrix[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
-                {
-                    break;
-                }
-                position.Line = position.Line + 1;//Taking the opponente position 
+                logicMatrix[pos.Line, pos.Column] = true;               
             }
             //2 Step South and 1 to East
-            position.DefiningValues(Position.Line + 2, Position.Column + 1);
-            while (Board.validPosition(position) && CanMove(position))
+            pos.DefiningValues(Position.Line + 2, Position.Column + 1);
+            if (Board.validPosition(pos) && CanMove(pos))
             {
-                logicMatrix[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
-                {
-                    break;
-                }
-                position.Line = position.Line + 1;//Taking the opponente position 
+                logicMatrix[pos.Line, pos.Column] = true;               
             }
             //1 Step South and 2 to West
-            position.DefiningValues(Position.Line + 1, Position.Column - 2);
-            while (Board.validPosition(position) && CanMove(position))
+            pos.DefiningValues(Position.Line + 1, Position.Column - 2);
+            if (Board.validPosition(pos) && CanMove(pos))
             {
-                logicMatrix[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
-                {
-                    break;
-                }
-                position.Line = position.Line + 1;//Taking the opponente position 
+                logicMatrix[pos.Line, pos.Column] = true;                
             }
             //2 Step South and 1 to West
-            position.DefiningValues(Position.Line + 2, Position.Column - 1);
-            while (Board.validPosition(position) && CanMove(position))
+            pos.DefiningValues(Position.Line + 2, Position.Column - 1);
+            if (Board.validPosition(pos) && CanMove(pos))
             {
-                logicMatrix[position.Line, position.Column] = true;
-                if (Board.Piece(position) != null && Board.Piece(position).Color != Color)
-                {
-                    break;
-                }
-                position.Line = position.Line + 1;//Taking the opponente position 
+                logicMatrix[pos.Line, pos.Column] = true;              
             }
 
             return logicMatrix;
