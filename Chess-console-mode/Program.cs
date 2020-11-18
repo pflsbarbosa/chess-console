@@ -22,25 +22,25 @@ namespace Chess_console_mode
 
                         Console.WriteLine();
                         Console.Write("Source: ");
-                        Position original = Screen.ReadingChessPosition().ToPositionMatrix();
-                        chessMatch.ValidateTheOriginPosition(original);
+                        Position origin = Screen.ReadingChessPosition().ToPositionMatrix();
+                        chessMatch.ValidateTheOriginPosition(origin);
                         
 
-                        bool[,] possiblePositions = chessMatch.Board.Piece(original).PossibleMovements();
+                        bool[,] possiblePositions = chessMatch.Board.Piece(origin).PossibleMovements();
 
                         Console.Clear();
-                        Screen.printingChessBoard(chessMatch.Board, possiblePositions);
+                        Screen.PrintingChessBoard(chessMatch.Board, possiblePositions);
 
 
                         Console.WriteLine();
                         Console.Write("Destiny: ");
                         Position destiny = Screen.ReadingChessPosition().ToPositionMatrix();
-                        chessMatch.ValidateTheDestinyPosition(original, destiny);
-                        chessMatch.PerformMove(original, destiny);
+                        chessMatch.ValidateTheDestinyPosition(origin, destiny);
+
+                        chessMatch.PerformMove(origin, destiny);
                     }
                     catch (BoardException e)
                     {
-
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
@@ -50,11 +50,9 @@ namespace Chess_console_mode
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
             }
             Console.ReadKey();
-
         }
     }
 }

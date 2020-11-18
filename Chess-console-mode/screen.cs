@@ -9,7 +9,7 @@ namespace Chess_console_mode
     {
         public static void PrintingChessMatch(ChessMatch chessMatch)
         {
-            Screen.printingChessBoard(chessMatch.Board);
+            Screen.PrintingChessBoard(chessMatch.Board);
             Console.WriteLine();
             PrintingCapturedPieces(chessMatch);
             Console.WriteLine();
@@ -53,7 +53,7 @@ namespace Chess_console_mode
 
             Console.Write("]");
         }
-        public static void printingChessBoard(Board board)
+        public static void PrintingChessBoard(Board board)
         {
             for (int i = 0; i < board.Lines; i++)
             {
@@ -67,7 +67,7 @@ namespace Chess_console_mode
             }
             Console.Write("  a b c d e f g h");
         }
-        public static void printingChessBoard(Board board, bool[,] possiblePositions)
+        public static void PrintingChessBoard(Board board, bool[,] possiblePositions)
         {
             ConsoleColor originalBakgroundColor = Console.BackgroundColor;
             ConsoleColor bakgroundColorChanged = ConsoleColor.DarkGray;

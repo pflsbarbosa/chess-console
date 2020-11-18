@@ -37,49 +37,49 @@ namespace chess_game
 
             //Above
             position.DefiningValues(Position.Line -1, Position.Column);
-            if (Board.validPosition(position) && CanMove(position)) 
+            if (Board.ValidPosition(position) && CanMove(position)) 
             {
                 logicMatrix[position.Line, position.Column] = true;
             }
             //NorthEast
             position.DefiningValues(Position.Line - 1, Position.Column + 1);
-            if (Board.validPosition(position) && CanMove(position))
+            if (Board.ValidPosition(position) && CanMove(position))
             {
                 logicMatrix[position.Line, position.Column] = true;
             }
             //East (Right)
             position.DefiningValues(Position.Line, Position.Column + 1);
-            if (Board.validPosition(position) && CanMove(position))
+            if (Board.ValidPosition(position) && CanMove(position))
             {
                 logicMatrix[position.Line, position.Column] = true;
             }
             //SouthEast 
             position.DefiningValues(Position.Line + 1, Position.Column + 1);
-            if (Board.validPosition(position) && CanMove(position))
+            if (Board.ValidPosition(position) && CanMove(position))
             {
                 logicMatrix[position.Line, position.Column] = true;
             }
             //South (Down)
             position.DefiningValues(Position.Line + 1 , Position.Column);
-            if (Board.validPosition(position) && CanMove(position))
+            if (Board.ValidPosition(position) && CanMove(position))
             {
                 logicMatrix[position.Line, position.Column] = true;
             }
             //SouthWest
             position.DefiningValues(Position.Line + 1, Position.Column - 1);
-            if (Board.validPosition(position) && CanMove(position))
+            if (Board.ValidPosition(position) && CanMove(position))
             {
                 logicMatrix[position.Line, position.Column] = true;
             }
             //West (Left)
             position.DefiningValues(Position.Line, Position.Column - 1);
-            if (Board.validPosition(position) && CanMove(position))
+            if (Board.ValidPosition(position) && CanMove(position))
             {
                 logicMatrix[position.Line, position.Column] = true;
             }
             //NorthWest
             position.DefiningValues(Position.Line - 1, Position.Column - 1);
-            if (Board.validPosition(position) && CanMove(position))
+            if (Board.ValidPosition(position) && CanMove(position))
             {
                 logicMatrix[position.Line, position.Column] = true;
             }

@@ -9,7 +9,7 @@ namespace chess_board
     {
         public int Lines { get; set; }
         public int Columns { get; set; }
-        private Piece[,] Pieces;//only board move the pieces
+        private readonly Piece[,] Pieces;//only board move the pieces
 
         public Board(int lines, int columns)
         {
@@ -30,7 +30,7 @@ namespace chess_board
 
         public bool PieceExists(Position position)
         {
-            validatePosition(position);
+            ValidatePosition(position);
             return Piece(position) != null;
         }
 
@@ -44,7 +44,7 @@ namespace chess_board
             piece.Position = position;
         }
         
-        public  Piece RemovingPieces(Position position)
+        public  Piece RemovingPiece(Position position)
         {
             
             if (Piece(position) == null)
@@ -60,7 +60,7 @@ namespace chess_board
             return aux;
         } 
 
-        public bool validPosition(Position position)
+        public bool ValidPosition(Position position)
         {
             if (position.Line < 0 || position.Line >= Lines || position.Column >= Columns || position.Column < 0)
             {
@@ -70,9 +70,9 @@ namespace chess_board
             return true;
         }
 
-        public void validatePosition(Position position)
+        public void ValidatePosition(Position position)
         {
-            if (!validPosition(position))
+            if (!ValidPosition(position))
             {
                 throw new BoardException("Invalid position!");
             }

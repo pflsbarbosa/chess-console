@@ -33,49 +33,49 @@ namespace chess_game
 
             //1 step North and 2 to East 
             pos.DefiningValues(Position.Line - 1, Position.Column + 2);
-            if (Board.validPosition(pos) && CanMove(pos))
+            if (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;                                
             }
             //2 step North and 1 to East 
             pos.DefiningValues(Position.Line - 2, Position.Column + 1);
-            if (Board.validPosition(pos) && CanMove(pos))
+            if (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;                                
             }
             //1 step North and 2 to West 
             pos.DefiningValues(Position.Line - 1, Position.Column - 2);
-            if (Board.validPosition(pos) && CanMove(pos))
+            if (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;                
             }
             //2 step North and 1 to West 
             pos.DefiningValues(Position.Line - 2, Position.Column - 1);
-            if (Board.validPosition(pos) && CanMove(pos))
+            if (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;               
             }
             //1 Step South and 2 to East
             pos.DefiningValues(Position.Line + 1, Position.Column + 2);
-            if (Board.validPosition(pos) && CanMove(pos))
+            if (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;               
             }
             //2 Step South and 1 to East
             pos.DefiningValues(Position.Line + 2, Position.Column + 1);
-            if (Board.validPosition(pos) && CanMove(pos))
+            if (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;               
             }
             //1 Step South and 2 to West
             pos.DefiningValues(Position.Line + 1, Position.Column - 2);
-            if (Board.validPosition(pos) && CanMove(pos))
+            if (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;                
             }
             //2 Step South and 1 to West
             pos.DefiningValues(Position.Line + 2, Position.Column - 1);
-            if (Board.validPosition(pos) && CanMove(pos))
+            if (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;              
             }

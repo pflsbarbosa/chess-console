@@ -33,7 +33,7 @@ namespace chess_game
 
             //NorthEast 
             pos.DefiningValues(Position.Line - 1, Position.Column + 1);
-            while (Board.validPosition(pos) && CanMove(pos))
+            while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color)
@@ -44,7 +44,7 @@ namespace chess_game
             }
             //NorthWest 
             pos.DefiningValues(Position.Line - 1, Position.Column - 1);
-            while (Board.validPosition(pos) && CanMove(pos))
+            while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color)
@@ -55,7 +55,7 @@ namespace chess_game
             }
             //SouthEast
             pos.DefiningValues(Position.Line + 1, Position.Column + 1);
-            while (Board.validPosition(pos) && CanMove(pos))
+            while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color)
@@ -66,7 +66,7 @@ namespace chess_game
             }
             //SouthWest
             pos.DefiningValues(Position.Line + 1, Position.Column - 1);
-            while (Board.validPosition(pos) && CanMove(pos))
+            while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color)
@@ -78,7 +78,7 @@ namespace chess_game
 
             //Above
             pos.DefiningValues(Position.Line - 1, Position.Column);
-            while (Board.validPosition(pos) && CanMove(pos))
+            while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color)
@@ -89,7 +89,7 @@ namespace chess_game
             }
             //South (Down)
             pos.DefiningValues(Position.Line + 1, Position.Column);
-            while (Board.validPosition(pos) && CanMove(pos))
+            while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color)
@@ -100,7 +100,7 @@ namespace chess_game
             }
             //East (Right)
             pos.DefiningValues(Position.Line, Position.Column + 1);
-            while (Board.validPosition(pos) && CanMove(pos))
+            while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color)
@@ -112,7 +112,7 @@ namespace chess_game
 
             //West (Left)
             pos.DefiningValues(Position.Line, Position.Column - 1);
-            while (Board.validPosition(pos) && CanMove(pos))
+            while (Board.ValidPosition(pos) && CanMove(pos))
             {
                 logicMatrix[pos.Line, pos.Column] = true;
                 if (Board.Piece(pos) != null && Board.Piece(pos).Color != Color)
